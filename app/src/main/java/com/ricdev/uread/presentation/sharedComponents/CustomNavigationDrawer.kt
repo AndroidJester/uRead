@@ -1,6 +1,7 @@
 package com.ricdev.uread.presentation.sharedComponents
 
 import android.content.res.Configuration
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -9,6 +10,7 @@ import androidx.compose.material.icons.automirrored.outlined.StickyNote2
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -48,6 +50,15 @@ fun CustomNavigationDrawer(
     val appPreferences by viewModel.appPreferences.collectAsStateWithLifecycle()
     val showPremiumScreen by remember { mutableStateOf(false) }
 
+
+    LaunchedEffect(purchaseHelper) {
+        purchaseHelper.isPremium.collect { isPremium ->
+            viewModel.updatePremiumStatus(isPremium)
+        }
+    }
+
+
+
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
@@ -66,6 +77,15 @@ fun CustomNavigationDrawer(
                                 .size(if (isPortrait) 24.dp else 16.dp)
                                 .offset(y = (if (isPortrait) 36 else 18).dp)
                         )
+                        FilledTonalButton(
+                                contentPadding = PaddingValues(8.dp),
+                        onClick = {
+                        },
+                        modifier = Modifier
+                            .offset(y = (if (isPortrait) 36 else 18).dp)
+                        ) {
+                                Text("Connect to Google Drive", fontSize = 12.sp)
+                        }
                     } else {
                         FilledTonalButton(
                             contentPadding = PaddingValues(8.dp),

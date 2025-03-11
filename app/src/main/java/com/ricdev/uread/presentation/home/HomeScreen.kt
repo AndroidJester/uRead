@@ -99,11 +99,6 @@ fun HomeScreen(
         }
     }
 
-    LaunchedEffect(purchaseHelper) {
-        purchaseHelper.isPremium.collect { isPremium ->
-            viewModel.updatePremiumStatus(isPremium)
-        }
-    }
 
     LaunchedEffect(selectedTab) {
         pagerState.animateScrollToPage(selectedTab)

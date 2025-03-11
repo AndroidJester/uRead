@@ -9,6 +9,7 @@ import android.util.Base64
 import android.util.TypedValue
 import android.view.View
 import android.widget.FrameLayout
+import androidx.activity.compose.LocalActivity
 import androidx.annotation.ColorInt
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animate
@@ -260,7 +261,7 @@ fun EpubReaderView(
 ) {
 
     val context = LocalContext.current
-    val fragmentActivity = LocalContext.current as FragmentActivity
+    val fragmentActivity = LocalActivity.current as FragmentActivity
     var navigatorFragment by remember { mutableStateOf<EpubNavigatorFragment?>(null) }
     val coroutineScope = rememberCoroutineScope()
     val screenConfiguration = LocalConfiguration.current
@@ -1027,7 +1028,7 @@ fun EpubReaderView(
                 onDismiss = { showNoteDialog = false },
                 showPremiumModal = {
                     showNoteDialog = false
-                    navController.navigate(Screens.PremiumScreen.route);
+                    navController.navigate(Screens.PremiumScreen.route)
 //                    viewModel.purchasePremium(purchaseHelper)
 //                    showPremiumModal = true
                 }
@@ -1051,7 +1052,7 @@ fun EpubReaderView(
                 showPremiumModal = {
                     viewModel.clearSelectedNote()
 //                    viewModel.purchasePremium(purchaseHelper)
-                    navController.navigate(Screens.PremiumScreen.route);
+                    navController.navigate(Screens.PremiumScreen.route)
                 }
             )
         }

@@ -34,8 +34,8 @@ android {
         minSdk = 28
         //noinspection OldTargetApi
         targetSdk = 34
-        versionCode = 19
-        versionName = "1.2.2"
+        versionCode = 20
+        versionName = "1.2.3"
         multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -104,6 +104,7 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
             excludes += "/schemas/**"
+//            excludes += "META-INF/DEPENDENCIES"
         }
     }
 }
@@ -223,8 +224,30 @@ dependencies {
     implementation(libs.aboutlibraries.compose)
 
 
+    implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
+    implementation("io.github.jan-tennert.supabase:postgrest-kt")
+    implementation("io.github.jan-tennert.supabase:auth-kt")
+    implementation("io.github.jan-tennert.supabase:realtime-kt")
+
+
+
 
 //    implementation(libs.ketch)
 //    implementation(libs.retrofit)
+
+
+//    implementation("com.google.android.gms:play-services-auth:21.3.0")
+//    implementation("com.google.apis:google-api-services-drive:v3-rev197-1.25.0")
+//    implementation("com.google.api-client:google-api-client-android:2.2.0")
+//    implementation("com.google.oauth-client:google-oauth-client-jetty:1.34.1")
+//
+//    implementation("androidx.credentials:credentials-play-services-auth:1.5.0-rc01")
+//    implementation("androidx.credentials:credentials:1.5.0-rc01")
+//
+//    // optional - needed for credentials support from play services, for devices running
+//    // Android 13 and below.
+//    implementation("androidx.credentials:credentials-play-services-auth:1.5.0-rc01")
+//
+//    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
 
 }

@@ -1,6 +1,8 @@
 package com.ricdev.uread.presentation.sharedComponents
 
+import android.app.Activity
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.ricdev.uread.data.model.AppPreferences
@@ -21,12 +23,18 @@ import javax.inject.Inject
 class CustomNavigationViewModel @Inject constructor(
     private val appPreferencesUtil: AppPreferencesUtil,
     application: Application,
+
 ) : AndroidViewModel(application) {
 
+    private val context: Context
+        get() = getApplication<Application>().applicationContext
 
 
     private val _appPreferences = MutableStateFlow(AppPreferencesUtil.defaultPreferences)
     val appPreferences: StateFlow<AppPreferences> = _appPreferences.asStateFlow()
+
+    private val _isDriveConnected = MutableStateFlow(false)
+    val isDriveConnected: StateFlow<Boolean> = _isDriveConnected.asStateFlow()
 
 
     init {
